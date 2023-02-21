@@ -16,13 +16,18 @@
 	<properties>
 		<java.version>17</java.version>
 	</properties>
-	  <distributionManagement>
-	    <repository>
-	        <id>central</id>
-	        <name>a0h6oc5attlpw-artifactory-primary-0-releases</name>
-	        <url>https://sirahu.jfrog.io/artifactory/libs-release-local</url>
-	    </repository>
-	</distributionManagement>
+	 <distributionManagement>
+    <repository>
+        <id>central</id>
+        <name>a0h6oc5attlpw-artifactory-primary-0-releases</name>
+        <url>https://sirahu.jfrog.io/artifactory/libs-release-local</url>
+    </repository>
+    <snapshotRepository>
+        <id>snapshots</id>
+        <name>a0h6oc5attlpw-artifactory-primary-0-snapshots</name>
+        <url>https://sirahu.jfrog.io/artifactory/libs-release-local</url>
+    </snapshotRepository>
+</distributionManagement>
 
 	<dependencies>
 		<dependency>
