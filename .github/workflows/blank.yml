@@ -30,7 +30,7 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-      - name: Deploy release to artifactory
-      run: |
+- name: Deploy release to artifactory
+run: |
       echo ${{ secrets.SETTINGS_XML }} ~/.m2/settings.xml
       mvn deploy
