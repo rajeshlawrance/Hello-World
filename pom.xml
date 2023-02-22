@@ -18,19 +18,12 @@
 	</properties>
 	
 <distributionManagement>
-    <repository>
-        <id>central</id>
-        <name>a0h6oc5attlpw-artifactory-primary-0-releases</name>
-        <url>https://sirahu.jfrog.io/artifactory/libs-release-local</url>
-    </repository>
-    
     <snapshotRepository>
         <id>snapshots</id>
-        <name>a0h6oc5attlpw-artifactory-primary-0-snapshots</name>
-        <url>https://sirahu.jfrog.io/artifactory/libs-release-local</url>
+        <name>a0hc1naqaua6m-artifactory-primary-0-snapshots</name>
+        <url>https://sirahurajesh.jfrog.io/artifactory/libs-snapshot</url>
     </snapshotRepository>
 </distributionManagement>
-
 	<dependencies>
 		<dependency>
             <groupId>nz.net.ultraq.thymeleaf</groupId>
