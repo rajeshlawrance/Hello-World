@@ -89,5 +89,4 @@ jobs:
             })
         continue-on-error: true           
       - name: Deploy to PROD
-        run: mvn deploy -DskipTests -DmuleDeploy -Dmule.artifact=$(ls *.jar | head -l) -Danypoint.connectedAppClientId=$GITHUB_CONNECTED_APP_CLIENT_ID  -Danypoint.connectedAppClientSecret=$GITHUB_CONNECTED_APP_CLIENT_SECRET -Danypoint.platform.client_id=$WERNER_ANYPOINT_CLIENT_ID   -Danypoint.platform.client_secret=$WERNER_ANYPOINT_CLIENT_SECRET   -Danypoint.environment=$MULE_ENV -Dmule.env=$MULE_ENV -Dmule.key=$MULE_KEY  -Dworker.count=$WORKER_COUNT -Dworker.type=$WORKER_TYPE -Dworker.region=$WORKER_REGION -Djks.password=$JKS_PASSWORD -Djks.key.password=$JKS_PASSWORD -Dhost=$HOST -DdeploymentTimeout=1200000
-
+        run: mvn deploy -DskipTests
