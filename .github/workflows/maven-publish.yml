@@ -37,17 +37,24 @@ jobs:
         uses: whelk-io/maven-settings-xml-action@v20
     
         with:
-            repositories: >
-              [
-            servers: >
-              [
-               
-                {
-                  "id": "central",
-                  "username": "rajeshlawrance@gmail.com",
-                  "password": "cmVmdGtuOjAxOjE3MDg1OTY5NDc6S2R3Mm16TlM5cnJPUHdYYXc2YThlQTNEMUFR"
-                }
-              ]             
+             repositories: >
+                [
+                  {
+                  "id": "snapshots",
+                  "name": "a0hc1naqaua6m-artifactory-primary-0-snapshots",
+                  "url": "https://sirahurajesh.jfrog.io/artifactory/libs-snapshot"
+                  }       
+                ]
+           
+             servers: >
+                    [
+                      {
+                        "id": "central",
+                        "username": "rajeshlawrance@gmail.com",
+                        "password": "cmVmdGtuOjAxOjE3MDg1OTY5NDc6S2R3Mm16TlM5cnJPUHdYYXc2YThlQTNEMUFR"
+                      }
+                    ]
+             
       - name: Build with Maven
         run: mvn -B package --file pom.xml -DskipTests 
         
