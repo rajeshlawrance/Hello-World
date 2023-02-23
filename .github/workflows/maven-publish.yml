@@ -54,7 +54,7 @@ jobs:
 
       - name: maven-settings-xml-action
         uses: whelk-io/maven-settings-xml-action@v11
-         with:
+        with:
           servers: |
             '[
              {
