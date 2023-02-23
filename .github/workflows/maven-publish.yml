@@ -89,4 +89,4 @@ jobs:
             })
         continue-on-error: true           
       - name: Deploy to PROD
-        run: mvn deploy -DskipTests
+        run: mvn deploy
