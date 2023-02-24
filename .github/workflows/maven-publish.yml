@@ -95,7 +95,6 @@ jobs:
            
       - name: Build with Maven
         run: | 
-         jf mvnc --repo-resolve-releases '' --repo-resolve-snapshots '' --repo-deploy-releases ${{env.JFROG_ARTIFACTORY_REPONAME}} --repo-deploy-snapshots ${{env.JFROG_ARTIFACTORY_REPONAME}}
-         jf mvn clean install --file pom.xml -DskipTests
+         jf mvn clean install
      
  
