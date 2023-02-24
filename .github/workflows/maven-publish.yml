@@ -48,6 +48,4 @@ jobs:
       - name: Ping JFrog CLI 
         run: |         
            jf rt ping
-           with:
-                download-repository: jfrog-cli-remote
-
+           
