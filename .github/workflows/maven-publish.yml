@@ -44,7 +44,7 @@ jobs:
                 {
                   "id": "Artifactory",
                   "name": "Mule Public Repository",
-                  "url": "${JF_URL}",
+                  "url": "${env.JF_URL}",
                   "releases": {
                     "enabled": "true"
                   },
@@ -58,7 +58,7 @@ jobs:
                 {
                   "id": "Artifactory",
                   "name": "Mule Public Repository",
-                  "url": "${JF_URL}",
+                  "url": "${env.JF_URL}",
                   "releases": {
                     "enabled": "true"
                   },
