@@ -19,7 +19,7 @@
 	
 <distributionManagement>
     <snapshotRepository>
-        <id>libs-snapshot-local</id>
+        <id>snapshots</id>
         <name>a0hc1naqaua6m-artifactory-primary-0-snapshots</name>
         <url>https://sirahurajesh.jfrog.io/artifactory/libs-snapshot-local</url>
     </snapshotRepository>
@@ -30,7 +30,7 @@
             <groupId>nz.net.ultraq.thymeleaf</groupId>
             <artifactId>thymeleaf-layout-dialect</artifactId>
             <version>3.1.0</version>
-</dependency>
+             </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
