@@ -93,12 +93,14 @@ jobs:
         run: |         
            jf rt ping
            
-      - name: Build
-        run: mvn -B package --file pom.xml
-        continue-on-error: false
+      - name: Build with Maven
+        env:
+         REPO_NAME : ${{ env.JFROG_ARTIFACTORY_REPONAME }}
+        run: | 
+         jf mvnc --repo-resolve-releases '' --repo-resolve-snapshots '' --repo-deploy-releases $REPO_NAME --repo-deploy-snapshots $REPO_NAME
+         jf mvn clean install --file pom.xml -DskipTests
 
       - name: Deploy
-       
         run: mvn deploy -DskipTests -DmuleDeploy -Dmule.artifact=$(ls *.jar | head -l) -DdeploymentTimeout=1200000
         continue-on-error: false
      
