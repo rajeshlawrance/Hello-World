@@ -1,36 +1,48 @@
-name: Release
+name: Main Build
+on:  
+    push:
+        branches: ["master"]
+    pull_request:
+        branches: ["master"]        
+    workflow_dispatch:
 
-on:
-   push:
-      branches: [ "master" ]
-   pull_request:
-      branches: [ "master" ]
+concurrency: 
+  group: release-${{github.repository}}
+  cancel-in-progress: true
+
 jobs:
-  release:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-
-      # Configure Java 8 and generate a settings.xml file containing the OSSRH credentials
-      - name: Set up Maven Central Repository
-        uses: actions/setup-java@v3
+    
+      - uses: actions/checkout@v2     
+      
+      - uses: actions/cache@v1
         with:
-          distribution: "temurin"
-          java-version: "8"
-          server-id: "central"
-          server-username: "rajeshlawrance@gmail.com"
-          server-password: "cmVmdGtuOjAxOjE3MDg1OTY5NDc6S2R3Mm16TlM5cnJPUHdYYXc2YThlQTNEMUFR"
-          gpg-private-key: ${{ secrets.OSSRH_GPG_PRIVATE_KEY }}
-          gpg-passphrase: OSSRH_GPG_PASSPHRASE
-
-      # Run mvn install
-      - name: Install
-        run: mvn install -B
-
-      # Deploy to Maven Central
-      - name: Deploy to Maven Central
-        run: mvn -B deploy -Pupload-to-central
+            path: ~/.m2/repository
+            key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+            restore-keys: |
+                ${{ runner.os }}-maven-
+                
+      - name: Set up JDK 8
+        uses: actions/setup-java@v2
+        with:
+          java-version: '8'
+          distribution: 'adopt'
+          overwrite-settings: false
+      - name: Setup JFrog CLI
+        # Install CLI 
+        uses: jfrog/setup-jfrog-cli@v3
         env:
-          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
-          OSSRH_GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_PASSPHRASE }}
+      # JFrog platform url 
+         JF_URL: "https://sirahurajesh.jfrog.io/artifactory/libs-snapshot-local/"
+      
+      # JFrog Platform access token 
+         JF_ACCESS_TOKEN: "eyJ2ZXIiOiIyIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYiLCJraWQiOiJQckZTeEE4OW4zWnNSTnJjVWtNU1Zadm5TMk10ZWVqcTNvR3Fub2d3d21JIn0.eyJzdWIiOiJqZmFjQDAxZ3NyM3pra2N0dm03MGszMHB2N3kwdHZ5XC91c2Vyc1wvcmFqZXNobGF3cmFuY2UiLCJzY3AiOiJhcHBsaWVkLXBlcm1pc3Npb25zXC9hZG1pbiIsImF1ZCI6IipAKiIsImlzcyI6ImpmZmVAMDAwIiwiZXhwIjoxNzA4NzA0MDM0LCJpYXQiOjE2NzcxNjgwMzQsImp0aSI6IjcyMDE0Mjg3LWE3NDYtNGNmMS1hZDJmLWZkNzRiZDU0ZGViYiJ9.ITYvfPm06vgVbCh5z4pt3_U-vJbKqs_vjniocr59ueEmR2FjGhyhSfdTI776kSOF4xqOvmXImR2mDQ2q9znuw_SJU2q75IRX2s4dCpQJ3N2sqY46aNVhLjZR8026oX9RKy4FKRdceiOHb25VrReCobay8p4JWBSSFxKugY8agreBxPwjjLn8ql0-kpvZitz3OOzlEVvECHsram45NA0zTGMRamS2UcG70FmQs9OElxC-WZIdbsK5pwhScmOREaWcrtCy-FdfX-lPpG4f_V3om3g2Z7dz1DjkPOv84ljvnU8Z3ZpGp2ADWkB0bxP0ak8nEkN492EC5DQF_GHBTXgQUQ"
+     
+     # JFrog Ping 
+      - name: Ping JFrog CLI 
+        run: |         
+           jf rt ping
+
