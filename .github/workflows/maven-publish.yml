@@ -98,7 +98,7 @@ jobs:
          REPO_NAME : ${{ env.JFROG_ARTIFACTORY_REPONAME }}
         run: | 
          jf mvnc --repo-resolve-releases '' --repo-resolve-snapshots '' --repo-deploy-releases $REPO_NAME --repo-deploy-snapshots $REPO_NAME
-         jf mvn clean install --file pom.xml -DskipTests -DuseReleaseProfile=false -Dmaven.javadoc.skip=true -Darguments="-Dmaven.test.skip=true" -DscmCommentPrefix="update pom version - 5" -Dresume=false -Dmaven.test.skip=true -Dmaven.deploy.skip=true release:update-versions -DdevelopmentVersion=5 -Dmessage="Pom Version updated" scm:status scm:checkin install -X -e
+         jf mvn clean install --file pom.xml -DskipTests -DuseReleaseProfile=false -Dmaven.javadoc.skip=true -Darguments="-Dmaven.test.skip=true" -DscmCommentPrefix="update pom version - 5" -Dresume=false -Dmaven.test.skip=true -Dmaven.deploy.skip=true release:update-versions -DdevelopmentVersion=5 -Dmessage="Pom Version updated"
 
       - name: Deploy
         run: mvn deploy -DskipTests -DmuleDeploy -Dmule.artifact=$(ls *.jar | head -l) -DdeploymentTimeout=1200000
