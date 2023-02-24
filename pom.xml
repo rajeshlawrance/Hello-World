@@ -19,9 +19,9 @@
 	
 <distributionManagement>
     <snapshotRepository>
-        <id>snapshots</id>
+        <id>libs-snapshot-local</id>
         <name>a0hc1naqaua6m-artifactory-primary-0-snapshots</name>
-        <url>https://sirahurajesh.jfrog.io/artifactory/libs-snapshot</url>
+        <url>https://sirahurajesh.jfrog.io/artifactory/libs-snapshot-local</url>
     </snapshotRepository>
 </distributionManagement>
 	
