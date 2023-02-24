@@ -48,4 +48,5 @@ jobs:
       - name: Ping JFrog CLI 
         run: |         
            jf rt ping
-           
+      - name: Deploy to PROD
+        run: mvn deploy
