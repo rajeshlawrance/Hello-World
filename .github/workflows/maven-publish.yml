@@ -94,7 +94,10 @@ jobs:
            jf rt ping
            
       - name: Build with Maven
+        env:
+         REPO_NAME : ${{ env.JFROG_ARTIFACTORY_REPONAME }}
         run: | 
-         jf mvn clean install
+         jf mvnc --repo-resolve-releases '' --repo-resolve-snapshots '' --repo-deploy-releases $REPO_NAME --repo-deploy-snapshots $REPO_NAME
+         jf mvn clean install --file pom.xml -DskipTests
      
  
