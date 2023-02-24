@@ -10,6 +10,10 @@ concurrency:
   group: release-${{github.repository}}
   cancel-in-progress: true
 
+env:
+  JF_URL: "https://sirahurajesh.jfrog.io/artifactory/libs-snapshot-local/"
+  JFROG_ARTIFACTORY_REPONAME: "libs-snapshot-local"
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -31,6 +35,46 @@ jobs:
           java-version: '8'
           distribution: 'adopt'
           overwrite-settings: false
+          
+      - name: maven-settings-xml-action
+        uses: whelk-io/maven-settings-xml-action@v20
+        with:
+            repositories: >
+              [           
+                {
+                  "id": "Artifactory",
+                  "name": "Mule Public Repository",
+                  "url": "${JF_URL}",
+                  "releases": {
+                    "enabled": "true"
+                  },
+                  "snapshots": {
+                    "enabled": "true"
+                  }
+                }           
+              ]
+            plugin_repositories: >
+              [
+                {
+                  "id": "Artifactory",
+                  "name": "Mule Public Repository",
+                  "url": "${JF_URL}",
+                  "releases": {
+                    "enabled": "true"
+                  },
+                  "snapshots": {
+                    "enabled": "true"
+                  }
+                }
+              ]
+            servers: >
+              [                           
+                {
+                  "id": "Artifactory",
+                  "username": "${{ secrets.JFROG_USER }}",
+                  "password": "${{ secrets.JFROG_ACCESS_TOKEN }}"
+                }
+              ]   
       - name: Setup JFrog CLI
         # Install CLI 
         uses: jfrog/setup-jfrog-cli@v3
@@ -48,5 +92,10 @@ jobs:
       - name: Ping JFrog CLI 
         run: |         
            jf rt ping
-      - name: Deploy to PROD
-        run: mvn deploy
+           
+      - name: Build with Maven
+        run: | 
+         jf mvnc --repo-resolve-releases '' --repo-resolve-snapshots '' --repo-deploy-releases ${{env.JFROG_ARTIFACTORY_REPONAME}} --repo-deploy-snapshots ${{env.JFROG_ARTIFACTORY_REPONAME}}
+         jf mvn clean install --file pom.xml -DskipTests
+     
+ 
