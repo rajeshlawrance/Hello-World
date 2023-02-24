@@ -71,8 +71,8 @@ jobs:
               [                           
                 {
                   "id": "Artifactory",
-                  "username": "${{ secrets.JFROG_USER }}",
-                  "password": "${{ secrets.JFROG_ACCESS_TOKEN }}"
+                  "username": "${{ secrets.JF_USER }}",
+                  "password": "${{ secrets.JF_PASSWORD }}"
                 }
               ]   
       - name: Setup JFrog CLI
