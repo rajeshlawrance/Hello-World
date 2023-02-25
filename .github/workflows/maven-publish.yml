@@ -97,7 +97,7 @@ jobs:
         env:
          REPO_NAME : ${{ env.JFROG_ARTIFACTORY_REPONAME }}
         run: | 
-         jf mvn clean install -f https://sirahurajesh.jfrog.io/artifactory/libs-snapshot-local/ --build-name maven-challenge --build-number 0.0.5-SNAPSHOT
+         jf mvn clean install -f path/to/pom-file --build-name maven-challenge --build-number 0.0.5-SNAPSHOT
          
       - name: Deploy
         run: mvn deploy:deploy-file -Durl=https://sirahurajesh.jfrog.io/artifactory/libs-snapshot-local/ -DrepositoryId=libs-snapshot-local -DgroupId=javax.j2ee -Dpackaging=jar -Dfile="j2ee.jar" -DartifactId=j2ee -Dversion=1.4        
