@@ -96,9 +96,7 @@ jobs:
       - name: Build with Maven
         env:
          REPO_NAME : ${{ env.JFROG_ARTIFACTORY_REPONAME }}
-        run: | 
-         jf mvnc --repo-resolve-releases '' --repo-resolve-snapshots '' --repo-deploy-releases $REPO_NAME --repo-deploy-snapshots $REPO_NAME
-         jf mvn clean install 
+   
          
       - name: Deploy
         run: mvn deploy:deploy-file -Durl=https://sirahurajesh.jfrog.io/artifactory/libs-snapshot-local/ -DrepositoryId=libs-snapshot-local -DgroupId=javax.j2ee -Dpackaging=jar -Dfile="j2ee.jar" -DartifactId=j2ee -Dversion=1.4        
