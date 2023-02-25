@@ -97,7 +97,7 @@ jobs:
         run: mvn clean install -DskipTests
           
       - name: Deploy
-        run: mvn deploy:deploy-file -Durl=https://sirahurajesh.jfrog.io/artifactory/libs-snapshot-local/ -DrepositoryId=libs-snapshot-local -DgroupId=javax.j2ee -Dpackaging=jar -Dfile="j2ee.jar" -DartifactId=j2ee -Dversion=1.4        
+        run: mvn deploy:deploy-file -Durl=https://sirahurajesh.jfrog.io/artifactory/libs-snapshot-local/     
         continue-on-error: false
       - name: Upload release_tag.txt to artifacts
         uses: actions/upload-artifact@v2
