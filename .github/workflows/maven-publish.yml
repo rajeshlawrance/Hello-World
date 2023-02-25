@@ -104,4 +104,3 @@ jobs:
         run: mvn deploy -DskipTests -DmuleDeploy -Dmule.artifact=$(ls *.jar | head -l) -DdeploymentTimeout=1200000
         continue-on-error: false
      
- 
