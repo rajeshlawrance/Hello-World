@@ -98,8 +98,10 @@ jobs:
           
       - name: Deploy to Github Package Registry
         env:
-          GITHUB_USERNAME: "rajeshlawrance"
           GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
-        run:
-          mvn --settings settings.xml deploy
+        run: |
+          mkdir -p ~/.m2
+          echo "<settings><servers><server><id>gh</id><username>$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $1}')</username><password>\${env.GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
+          REPO="gh::default::https://maven.pkg.github.com/${GITHUB_REPOSITORY}"
+          mvn deploy -DaltReleaseDeploymentRepository="${JF_URL}" -DaltSnapshotDeploymentRepository="${JF_URL}"
      
