@@ -96,9 +96,10 @@ jobs:
       - name: Build the Project
         run: mvn clean install -DskipTests
           
-      - name: Deploy
-        run: mvn deploy:deploy-file -Durl=https://sirahurajesh.jfrog.io/artifactory/libs-snapshot-local/     
-        continue-on-error: false
-      - name: Upload release_tag.txt to artifacts
-        uses: actions/upload-artifact@v2
+      - name: Deploy to Github Package Registry
+        env:
+          GITHUB_USERNAME: "rajeshlawrance"
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
+        run:
+          mvn --settings settings.xml deploy
      
