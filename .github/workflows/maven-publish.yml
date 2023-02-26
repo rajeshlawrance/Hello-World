@@ -91,7 +91,7 @@ jobs:
     # JFrog Ping 
       - name: Ping JFrog CLI 
         run: |         
-           jf c add test --basic-auth-only --url  ${{ secrets.JF_URL }} --user  ${{ secrets.JF_USER }} --password "cmVmdGtuOjAxOjE3MDg5NTY2MDU6RGV5ZXV5a084cWZyYlo5SU50S1ZTejhpcG1N"
+           jf rt ping --url  ${{ secrets.JF_URL }} --user  ${{ secrets.JF_USER }} --password "cmVmdGtuOjAxOjE3MDg5NTY2MDU6RGV5ZXV5a084cWZyYlo5SU50S1ZTejhpcG1N"
 
       - name: Build with Maven
         run: mvn clean package
