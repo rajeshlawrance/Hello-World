@@ -125,7 +125,7 @@
                                 </goals>
                                 <configuration>
                                     <publisher>
-                                        <contextUrlhttps://sirahurajesh.jfrog.io/artifactory/libs-snapshot-local</contextUrl>
+                                        <contextUrl>https://sirahurajesh.jfrog.io/artifactory/libs-snapshot-local</contextUrl>
                                         <username>rajeshlawrance@gmail.com</username>
                                         <password>cmVmdGtuOjAxOjE3MDg1OTY5NDc6S2R3Mm16TlM5cnJPUHdYYXc2YThlQTNEMUFR</password>
                                         <repoKey>oss-release-local</repoKey>
