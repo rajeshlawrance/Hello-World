@@ -98,8 +98,6 @@ jobs:
           
       # Deploy to Maven Central
       - name: Deploy to Maven Central
-        run: mvn -B deploy -Pupload-to-central
-        env:
-          OSSRH_USERNAME: ${{ secrets.JF_USER }}
-          OSSRH_PASSWORD: ${{ secrets.JF_PASSWORD }}
-          OSSRH_GPG_PASSPHRASE: ${{ secrets.JF_ACCESS_TOKEN }}
+        run: |
+          artifactName=$(ls *.jar | head -1)
+          mvn mule:deploy -Dmule.artifact=central -Danypoint.userName=rajeshlawrance@gmail.com -Danypoint.password=cmVmdGtuOjAxOjE3MDg1OTY5NDc6S2R3Mm16TlM5cnJPUHdYYXc2YThlQTNEMUFR 
