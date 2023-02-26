@@ -14,7 +14,6 @@ env:
   JF_URL: "https://sirahurajesh.jfrog.io/artifactory/libs-snapshot-local/"
   JFROG_ARTIFACTORY_REPONAME: "libs-snapshot-local"
 
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -93,15 +92,14 @@ jobs:
       - name: Ping JFrog CLI 
         run: |         
            jf rt ping
-        
-      - name: Build with Maven
-        run: mvn clean package
-
-      - name: Publish to JFrog Artifactory
-        run: mvn deploy
+           
+      - name: Build the Project
+        run: mvn clean install -DskipTests
+          
+      # Deploy to Maven Central
+      - name: Deploy to Maven Central
+        run: mvn -B deploy -Pupload-to-central
         env:
-          registry: ${{ secrets.JF_URL }}
-          username: ${{ secrets.JF_USER }}
-          password: ${{ secrets.JF_PASSWORD }}
-          GITHUB_TOKEN: "${{ secrets.TOKEN_GITHUB }}"
-        
+          OSSRH_USERNAME: ${{ secrets.JF_USER }}
+          OSSRH_PASSWORD: ${{ secrets.JF_PASSWORD }}
+          OSSRH_GPG_PASSPHRASE: ${{ secrets.JF_ACCESS_TOKEN }}
