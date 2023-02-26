@@ -93,10 +93,14 @@ jobs:
         run: |         
            jf rt ping
            
-      - name: Build the Project
-        run: mvn clean install -DskipTests
-          
-      # Deploy to Maven Central
-      - name: Deploy to Maven Central
-        run: mvn -B deploy
+      - name: Build with Maven
+        run: mvn clean package
+
+      - name: Publish to JFrog Artifactory
+        run: mvn deploy
+        env:
+          registry: ${{ secrets.JF_URL }}
+          username: ${{ secrets.JF_USER }}
+          password: ${{ secrets.JF_PASSWORD }}
+          GITHUB_TOKEN: "${{ secrets.TOKEN_GITHUB }}"
         
