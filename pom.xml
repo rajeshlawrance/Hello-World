@@ -126,7 +126,7 @@
                                     <publisher>
                                        <contextUrl>https://sirahurajesh.jfrog.io/artifactory/libs-snapshot-local</contextUrl>
                                         <username>rajeshlawrance@gmail.com</username>
-                                        <password>cmVmdGtuOjAxOjE3MDg1OTY5NDc6S2R3Mm16TlM5cnJPUHdYYXc2YThlQTNEMUFR</password>
+                                        <password>cmVmdGtuOjAxOjE3MDg5NTU5Mzk6dWc4cWM1RkFCRnpUSnJ4d3pyOTBJMno4N21I</password>
                                         <repoKey>libs-release-local</repoKey>
                                         <snapshotRepoKey>libs-snapshot-local</snapshotRepoKey>
                                     </publisher>
