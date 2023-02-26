@@ -98,7 +98,7 @@ jobs:
           
       # Deploy to Maven Central
       - name: Deploy to Maven Central
-        run: mvn -B deploy
+        run: mvn -B deploy -Pupload-to-central
         env:
           OSSRH_USERNAME: ${{ secrets.JF_USER }}
           OSSRH_PASSWORD: ${{ secrets.JF_PASSWORD }}
