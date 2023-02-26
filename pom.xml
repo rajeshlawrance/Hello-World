@@ -66,7 +66,7 @@
 					<goal>deploy-file</goal>
 				    </goals>
 				    <configuration>
-					<file>${basedir}/target/${name}-${version}.jar</file>
+					<file>${basedir}/target/ ${project.name}-${project.version}.jar</file>
 					<url>https://sirahurajesh.jfrog.io/artifactory/libs-snapshot-local</url>
 					<repositoryId>central</repositoryId>
 					<packaging>jar</packaging>
