@@ -98,6 +98,5 @@ jobs:
           
       # Deploy to Maven Central
       - name: Deploy to Maven Central
-        run: |
-          artifactName=$(ls *.jar | head -1)
-          mvn mule:deploy -Dmule.artifact=central -Danypoint.userName=rajeshlawrance@gmail.com -Danypoint.password=cmVmdGtuOjAxOjE3MDg1OTY5NDc6S2R3Mm16TlM5cnJPUHdYYXc2YThlQTNEMUFR 
+        run: mvn -B deploy
+        
