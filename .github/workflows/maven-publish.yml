@@ -92,7 +92,6 @@ jobs:
       - name: Ping JFrog CLI 
         run: |         
            jf rt ping
-           
       - name: Build the Project
         run: mvn clean install -DskipTests
           
