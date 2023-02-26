@@ -96,9 +96,10 @@ jobs:
       - name: Build the Project
         run: mvn clean install -DskipTests
           
-      - name: Deploy to Github Package Registry
+      # Deploy to Maven Central
+      - name: Deploy to Maven Central
+        run: mvn -B deploy -Pupload-to-central
         env:
-         GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
-        run: |
-         echo "<settings><servers><server><id>github</id><username>rajeshlawrance</username><password>${GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
-         mvn deploy
+          OSSRH_USERNAME: ${{ secrets.JF_USER }}
+          OSSRH_PASSWORD: ${{ secrets.JF_PASSWORD }}
+          OSSRH_GPG_PASSPHRASE: ${{ secrets.JF_ACCESS_TOKEN }}
