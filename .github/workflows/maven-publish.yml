@@ -90,7 +90,8 @@ jobs:
        
     # JFrog Ping 
       - name: Ping JFrog CLI 
-        run: jf rt ping
+        run: |         
+           jf rt ping
         
       - name: Build with Maven
         run: mvn clean package
