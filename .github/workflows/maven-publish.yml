@@ -98,7 +98,8 @@ jobs:
           
       - name: Deploy to Github Package Registry
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
+         GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
         run: |
-          mkdir -p ~/.m2
-          mvn deploy -DaltReleaseDeploymentRepository="${JF_URL}" -DaltSnapshotDeploymentRepository="${JF_URL}"
+         mkdir ~/.m2
+         echo "<settings><servers><server><id>github</id><username>rajeshlawrance</username><password>${GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
+         mvn deploy
