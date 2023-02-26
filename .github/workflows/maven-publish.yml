@@ -91,7 +91,7 @@ jobs:
     # JFrog Ping 
       - name: Ping JFrog CLI 
         run: |         
-           jf c add test --basic-auth-only --url "https://sirahurajesh.jfrog.io/artifactory/libs-snapshot" --user "rajeshlawrance@gmail.com" --password "cmVmdGtuOjAxOjE3MDg1OTY5NDc6S2R3Mm16TlM5cnJPUHdYYXc2YThlQTNEMUFR"
+           jf c add test --basic-auth-only --url "https://sirahurajesh.jfrog.io/artifactory/libs-snapshot" --user "rajeshlawrance@gmail.com" --password "cmVmdGtuOjAxOjE3MDg5NTU5Mzk6dWc4cWM1RkFCRnpUSnJ4d3pyOTBJMno4N21I"
 
       - name: Build with Maven
         run: mvn clean package
