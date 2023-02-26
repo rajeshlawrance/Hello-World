@@ -48,7 +48,7 @@
 		</dependency>
 	</dependencies>
 
-	<build>
+	 <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -94,7 +94,6 @@
                 </configuration>
             </plugin>
 
-           
         </plugins>
     </build>
 
@@ -107,7 +106,7 @@
                     we activate the 'release' profile only if Artifactory URL is specified.
                 -->
                 <property>
-                    <name>ARTIFACTORY_URL</name>
+                    <name>https://sirahurajesh.jfrog.io/artifactory/libs-snapshot-local</name>
                 </property>
             </activation>
             <build>
@@ -125,11 +124,11 @@
                                 </goals>
                                 <configuration>
                                     <publisher>
-                                        <contextUrl>https://sirahurajesh.jfrog.io/artifactory/libs-snapshot-local</contextUrl>
+                                       <contextUrl>https://sirahurajesh.jfrog.io/artifactory/libs-snapshot-local</contextUrl>
                                         <username>rajeshlawrance@gmail.com</username>
                                         <password>cmVmdGtuOjAxOjE3MDg1OTY5NDc6S2R3Mm16TlM5cnJPUHdYYXc2YThlQTNEMUFR</password>
-                                        <repoKey>oss-release-local</repoKey>
-                                        <snapshotRepoKey>oss-snapshot-local</snapshotRepoKey>
+                                        <repoKey>libs-release-local</repoKey>
+                                        <snapshotRepoKey>libs-snapshot-local</snapshotRepoKey>
                                     </publisher>
                                 </configuration>
                             </execution>
@@ -163,8 +162,8 @@
                             </execution>
                         </executions>
                     </plugin>
-                   
                 </plugins>
             </build>
-
+        </profile>
+    </profiles>
 </project>
