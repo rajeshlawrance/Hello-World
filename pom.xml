@@ -49,17 +49,122 @@
 	</dependencies>
 
 	<build>
-		<plugins>
-			<plugin>
-			 <groupId>org.apache.maven.plugins</groupId>
-			 <artifactId>maven-compiler-plugin</artifactId>
-			 <version>3.5.1</version>
-			 <configuration>
-			     <source>1.8</source>
-			     <target>1.8</target>
-			 </configuration>
-                 </plugin>
-	    </plugins>
-	</build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>3.6.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--Unit tests-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.1</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*ITest.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+           
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <activation>
+                <!--
+                    In order to allow to install the plugin before using it in deployment,
+                    we activate the 'release' profile only if Artifactory URL is specified.
+                -->
+                <property>
+                    <name>ARTIFACTORY_URL</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jfrog.buildinfo</groupId>
+                        <artifactId>artifactory-maven-plugin</artifactId>
+                        <version>${project.version}</version>
+                        <inherited>false</inherited>
+                        <executions>
+                            <execution>
+                                <id>build-info</id>
+                                <goals>
+                                    <goal>publish</goal>
+                                </goals>
+                                <configuration>
+                                    <publisher>
+                                        <contextUrlhttps://sirahurajesh.jfrog.io/artifactory/libs-snapshot-local</contextUrl>
+                                        <username>rajeshlawrance@gmail.com</username>
+                                        <password>cmVmdGtuOjAxOjE3MDg1OTY5NDc6S2R3Mm16TlM5cnJPUHdYYXc2YThlQTNEMUFR</password>
+                                        <repoKey>oss-release-local</repoKey>
+                                        <snapshotRepoKey>oss-snapshot-local</snapshotRepoKey>
+                                    </publisher>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <!-- Use this profile to sign and upload the JAR to Maven Central -->
+            <id>upload-to-central</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                                <configuration>
+                                    <gpgArguments>
+                                        <arg>--pinentry-mode</arg>
+                                        <arg>loopback</arg>
+                                    </gpgArguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                   
+                </plugins>
+            </build>
 
 </project>
