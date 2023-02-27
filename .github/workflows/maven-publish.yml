@@ -98,9 +98,4 @@ jobs:
       # Deploy to Maven Central
       - name: Deploy to Maven Central
         run: mvn -B deploy
-         <packageSourceCredentials>
-           <myFeed>
-            <add key="Username" value="myusername" />
-            <add key="ClearTextPassword" value="mytokencomeshere" />
-          </myFeed>
-         </packageSourceCredentials>
+     
