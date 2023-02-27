@@ -88,22 +88,14 @@ jobs:
             # JFrog Platform access token
             JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
        
-    # JFrog Ping 
+        # JFrog Ping 
       - name: Ping JFrog CLI 
         run: |         
-           jf rt ping
+               jf rt ping
+               
       - name: Build the Project
         run: mvn clean install -DskipTests
-          
-      - name: Build & Publish
-        env:
-            REPO_NAME : libs-snapshot-local
-        run: | 
-          jf mvnc --repo-resolve-releases $REPO_NAME --repo-resolve-snapshots $REPO_NAME --repo-deploy-releases $REPO_NAME --repo-deploy-snapshots $REPO_NAME
-          jf mvn clean install
-          # Collect environment variables for the build
-          jf rt bce
-          # Collect VCS details from git and add them to the build
-          jf rt bag
-          # Publish build info
-           jf rt bp     
+
+         
+      - name: Publish to JFrog Artifactory
+        run: mvn deploy
