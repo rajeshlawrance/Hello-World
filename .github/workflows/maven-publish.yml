@@ -100,7 +100,7 @@ jobs:
         uses: actions/upload-artifact@master
         with:
             name : artifacts
-            path : targe/*.jar
+            path : target/*.jar
             
       - name: Publish to JFrog Artifactory
         run: mvn deploy
