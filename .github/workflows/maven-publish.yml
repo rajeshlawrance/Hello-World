@@ -87,17 +87,11 @@ jobs:
             JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
             # JFrog Platform access token
             JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
-       
-      
-               
+            
+        # JFrog Ping 
+      - name: Ping JFrog CLI 
+        run: |         
+           jf rt ping
+           
       - name: Build the Project
         run: mvn clean install -DskipTests
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@master
-        with:
-            name : artifacts
-            path : target/*.jar
-            
-      - name: Publish to JFrog Artifactory
-        run: mvn deploy
