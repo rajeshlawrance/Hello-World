@@ -16,11 +16,16 @@
 		<java.version>8</java.version>
 	</properties>
 	
-	  <distributionManagement>
+	 <distributionManagement>
+	    <repository>
+		<id>central</id>
+		<name>a0h6oc5attlpw-artifactory-primary-0-releases</name>
+		<url>https://sirahu.jfrog.io/artifactory/jfrog-jfrogtest</url>
+	    </repository>
 	    <snapshotRepository>
 		<id>snapshots</id>
-		<name>a0hc1naqaua6m-artifactory-primary-0-snapshots</name>
-		<url>https://sirahurajesh.jfrog.io/artifactory/libs-snapshot-local</url>
+		<name>a0h6oc5attlpw-artifactory-primary-0-snapshots</name>
+		<url>https://sirahu.jfrog.io/artifactory/jfrog-jfrogtest</url>
 	    </snapshotRepository>
 	</distributionManagement>
 
