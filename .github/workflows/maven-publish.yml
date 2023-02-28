@@ -93,9 +93,6 @@ jobs:
         run: |         
                jf rt ping
                
-     
-          
-     
       - name: Build the Project
         run: mvn clean install -DskipTests
 
@@ -105,5 +102,5 @@ jobs:
             name : artifacts
             path : targe/*.jar
             
-      #- name: Publish to JFrog Artifactory
-      # run: mvn deploy
+      - name: Publish to JFrog Artifactory
+        run: mvn deploy
