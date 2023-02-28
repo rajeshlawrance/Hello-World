@@ -99,6 +99,11 @@ jobs:
       - name: Build the Project
         run: mvn clean install -DskipTests
 
-         
-      - name: Publish to JFrog Artifactory
-        run: mvn deploy
+      - name: Upload artifact
+        uses: actions/upload-artifact@master
+        with:
+            name : artifacts
+            path : targe/*.jar
+            
+      #- name: Publish to JFrog Artifactory
+      # run: mvn deploy
