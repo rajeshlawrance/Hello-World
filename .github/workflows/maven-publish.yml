@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  JF_URL: "https://sirahu.jfrog.io/artifactory/"
+  JF_URL: "https://sirahu.jfrog.io/artifactory/libs-snapshot"
   JFROG_ARTIFACTORY_REPONAME: "libs-snapshot-local"
 
 jobs:
