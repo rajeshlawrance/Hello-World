@@ -100,12 +100,12 @@ jobs:
         uses: actions/upload-artifact@master
         with:
             name : artifacts
-            path: targe/*.jar
+            path : targe/*.jar
             
           
      
      # - name: Build the Project
-       # run: mvn clean install -DskipTests
+     # run: mvn clean install -DskipTests
 
          
     #  - name: Publish to JFrog Artifactory
