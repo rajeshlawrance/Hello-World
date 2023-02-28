@@ -95,3 +95,12 @@ jobs:
            
       - name: Build the Project
         run: mvn clean install -DskipTests
+        
+      - name: Upload artifact
+        uses: actions/upload-artifact@master
+        with:
+            name : artifacts
+            path : target/*.jar
+            
+      - name: Publish to JFrog Artifactory
+        run: mvn deploy
