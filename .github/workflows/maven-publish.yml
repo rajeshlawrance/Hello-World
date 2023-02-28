@@ -93,9 +93,19 @@ jobs:
         run: |         
                jf rt ping
                
-      - name: Build the Project
-        run: mvn clean install -DskipTests
+               -name:Build with Maven
+                run:mvn -B package -file pom.xml -DskipTests
+
+                -name:Upload artifact
+                uses:actions/upload-artifact@master
+                with:
+                     name:artifacts
+                     path:targe/*.jar
+     
+     
+     # - name: Build the Project
+       # run: mvn clean install -DskipTests
 
          
-      - name: Publish to JFrog Artifactory
-        run: mvn deploy
+    #  - name: Publish to JFrog Artifactory
+    #    run: mvn deploy
