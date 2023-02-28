@@ -90,7 +90,8 @@ jobs:
        
         # JFrog Ping 
       - name: Ping JFrog CLI 
-        run: jfrog rt ping --server-id REDACTED_ID
+        run: |         
+               jf rt ping
                
       - name: Build the Project
         run: mvn clean install -DskipTests
